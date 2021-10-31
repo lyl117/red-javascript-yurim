@@ -88,7 +88,9 @@ const ajax = function(method, url, data, callback) {
 const cartsCreate = function(form) {
   const cartNameObject = form['cart-name'];
   const cart = {
-    name: cartNameObject.value
+    name: cartNameObject.value,
+    enter: moment().format('YYYY-MM-DD'),
+    expire: moment().add(3, 'days').format('YYYY-MM-DD')
   };
   // ajax('POST', 'http://localhost:3100/api/v1/carts', JSON.stringify(cart), successFunction);
   // axios.post('http://localhost:3100/api/v1/carts', cart).then(successFunction);
