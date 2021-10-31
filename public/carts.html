@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
   <link href="./index.css" rel="stylesheet">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script defer src="./js/carts.js"></script>
 </head>
 <body>
   <div class="wrap">
@@ -40,8 +42,8 @@
     </header>
     <div class="contents">
       <article>
-        <form class="form-inputs">
-          <input type="text" name="name" />
+        <form class="form-inputs" onsubmit="cartsCreate(this); return false;">
+          <input type="text" name="cart-name" />
           <button class="button-create"><span class="material-icons">edit</span></button>
         </form>
         <div class="div-table">
