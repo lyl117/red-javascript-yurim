@@ -123,23 +123,22 @@ const cartsRead = function() {
   //   console.log('Readed', carts);
   // };
   // ajax('GET', 'http://localhost:3100/api/v1/carts', undefined, successFunction);
-  axios.get('http://localhost:3100/api/v1/carts').then(function(response) {
-    const cartsLogical = response.data;
-    carts = cartsLogical.carts;
-    const tagDivParent = document.getElementById('tag-div-parent');
-    tagDivParent.innerHTML = '';
-    const tagDivChild = document.getElementById('tag-div-child');
+  axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
+    carts = response.data;
+    const tagTbodyParent = document.getElementById('tag-tbody-parent');
+    tagTbodyParent.innerHTML = '';
+    const tagTrChild = document.getElementById('tag-tr-child');
     for (let index in carts) {
-      const newDivChild = tagDivChild.cloneNode(true);
-      tagDivParent.appendChild(newDivChild);
-      const cartsNameObject = document.getElementsByName('carts-name')[index];
-      const cartsAgeObject = document.getElementsByName('carts-age')[index];
-      const cartsUpdateObject = document.getElementsByName('carts-update')[index];
-      const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
-      cartsNameObject.value = carts[index].name;
-      cartsAgeObject.value = carts[index].age;
-      cartsUpdateObject.index = index;
-      cartsDeleteObject.index = index;
+      const newDivChild = tagTrChild.cloneNode(true);
+      tagTbodyParent.appendChild(newDivChild);
+      // const cartsNameObject = document.getElementsByName('carts-name')[index];
+      // const cartsAgeObject = document.getElementsByName('carts-age')[index];
+      // const cartsUpdateObject = document.getElementsByName('carts-update')[index];
+      // const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
+      // cartsNameObject.value = carts[index].name;
+      // cartsAgeObject.value = carts[index].age;
+      // cartsUpdateObject.index = index;
+      // cartsDeleteObject.index = index;
     }
     console.log('Readed', carts);
   });
