@@ -138,12 +138,12 @@ const cartsRead = function() {
       cartsEnterObject.innerHTML = carts[key].enter;
       const cartsExpireObject = document.getElementsByName('carts-expire')[index];
       cartsExpireObject.value = carts[key].expire;
+      const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
+      cartsDeleteObject.key = key;
       // const cartsAgeObject = document.getElementsByName('carts-age')[index];
       // const cartsUpdateObject = document.getElementsByName('carts-update')[index];
-      // const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
       // cartsAgeObject.value = carts[index].age;
       // cartsUpdateObject.index = index;
-      // cartsDeleteObject.index = index;
       index++;
     }
     console.log('Readed', carts);
@@ -152,8 +152,9 @@ const cartsRead = function() {
 
 
 
-const cartsDelete = function(index) {
-  const url = 'http://localhost:3100/api/v1/carts/' + index;
+const cartsDelete = function(key) {
+  // const url = 'http://localhost:3100/api/v1/carts/' + key;
+  const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/carts/' + key + '.json';
   // ajax('DELETE', url, undefined, cartsRead);
   axios.delete(url).then(cartsRead);
 };
