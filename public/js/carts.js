@@ -128,17 +128,23 @@ const cartsRead = function() {
     const tagTbodyParent = document.getElementById('tag-tbody-parent');
     tagTbodyParent.innerHTML = '';
     const tagTrChild = document.getElementById('tag-tr-child');
-    for (let index in carts) {
+    let index = 0;
+    for (let key in carts) {
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
-      // const cartsNameObject = document.getElementsByName('carts-name')[index];
+      const cartsNameObject = document.getElementsByName('carts-name')[index];
+      cartsNameObject.innerHTML = carts[key].name;
+      const cartsEnterObject = document.getElementsByName('carts-enter')[index];
+      cartsEnterObject.innerHTML = carts[key].enter;
+      const cartsExpireObject = document.getElementsByName('carts-expire')[index];
+      cartsExpireObject.value = carts[key].expire;
       // const cartsAgeObject = document.getElementsByName('carts-age')[index];
       // const cartsUpdateObject = document.getElementsByName('carts-update')[index];
       // const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
-      // cartsNameObject.value = carts[index].name;
       // cartsAgeObject.value = carts[index].age;
       // cartsUpdateObject.index = index;
       // cartsDeleteObject.index = index;
+      index++;
     }
     console.log('Readed', carts);
   });
