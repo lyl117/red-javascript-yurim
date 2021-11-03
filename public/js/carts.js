@@ -138,12 +138,10 @@ const cartsRead = function() {
       cartsEnterObject.innerHTML = carts[key].enter;
       const cartsExpireObject = document.getElementsByName('carts-expire')[index];
       cartsExpireObject.value = carts[key].expire;
+      cartsExpireObject.key = key;
+      cartsExpireObject.index = index;
       const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
       cartsDeleteObject.key = key;
-      // const cartsAgeObject = document.getElementsByName('carts-age')[index];
-      // const cartsUpdateObject = document.getElementsByName('carts-update')[index];
-      // cartsAgeObject.value = carts[index].age;
-      // cartsUpdateObject.index = index;
       index++;
     }
     console.log('Readed', carts);
@@ -166,13 +164,11 @@ const cartsDelete = function(key) {
 //   // window.location.reload();
 //   return carts;
 // };
-const cartsUpdate = function(index) {
-  const url = 'http://localhost:3100/api/v1/carts/' + index;
-  const name = document.getElementsByName('carts-name')[index].value;
-  const age = document.getElementsByName('carts-age')[index].value;
+const cartsUpdate = function(index, key) {
+  const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/carts/' + key + '.json';
+  const expire = document.getElementsByName('carts-expire')[index].value;
   const cart = {
-    name: name,
-    age: age
+    expire: expire
   };
   // ajax('PATCH', url, JSON.stringify(cart), cartsRead);
   axios.patch(url, cart).then(cartsRead);
