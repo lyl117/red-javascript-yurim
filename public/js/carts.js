@@ -42,6 +42,8 @@ const cartsRead = function() {
       cartsExpireObject.index = index;
       const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
       cartsDeleteObject.key = key;
+      const cartsCheckboxObject = document.getElementsByName('carts-checkbox')[index];
+      cartsCheckboxObject.key = key;
       index++;
     }
     console.log('Readed', carts);
@@ -61,5 +63,18 @@ const cartsUpdate = function(index, key) {
   };
   axios.patch(url, cart).then(cartsRead);
 };
+
+const itemsChange = function(event) {
+  if (event.target.checked) {
+    console.log('TODO: item 생성')
+    console.log(event.target.key)
+    console.log(carts)
+    console.log(carts[event.target.key])
+    console.log(event)
+    axios.post('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json', carts[event.target.key]);
+  } else {
+    console.log('TODO: item 삭제')
+  }
+}
 
 cartsRead();
