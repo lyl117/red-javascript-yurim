@@ -40,6 +40,8 @@ const itemsRead = function() {
       itemsExpireObject.innerHTML = items[key].expire;
       // itemsExpireObject.key = key;
       // itemsExpireObject.index = index;
+      const itemsUpdateObject = document.getElementsByName('items-update')[index];
+      itemsUpdateObject.key = key;
       const itemsDeleteObject = document.getElementsByName('items-delete')[index];
       itemsDeleteObject.key = key;
       // const itemsCheckboxObject = document.getElementsByName('items-checkbox')[index];
@@ -62,6 +64,11 @@ const itemsUpdate = function(index, key) {
     expire: expire
   };
   axios.patch(url, item).then(itemsRead);
+};
+
+const itemsUpdateModal = function(key) {
+  // TODO: 눌러진 버튼을 바탕으로 해당 중의 데이터를 모달창에 적용
+  console.log(key);
 };
 
 const itemsChange = function(event) {
