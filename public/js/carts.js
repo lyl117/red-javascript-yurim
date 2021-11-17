@@ -65,15 +65,18 @@ const cartsUpdate = function(index, key) {
 };
 
 const itemsChange = function(event) {
+  const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/items/' + event.target.key + '.json';
   if (event.target.checked) {
     console.log('TODO: item 생성')
     console.log(event.target.key)
     console.log(carts)
     console.log(carts[event.target.key])
     console.log(event)
-    axios.post('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json', carts[event.target.key]);
+    console.log(url);
+    axios.patch(url, carts[event.target.key]);
   } else {
     console.log('TODO: item 삭제')
+    axios.delete(url);
   }
 }
 
