@@ -32,16 +32,16 @@ const itemsRead = function() {
     for (let key in items) {
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
-      // const itemsNameObject = document.getElementsByName('items-name')[index];
-      // itemsNameObject.innerHTML = items[key].name;
-      // const itemsEnterObject = document.getElementsByName('items-enter')[index];
-      // itemsEnterObject.innerHTML = items[key].enter;
-      // const itemsExpireObject = document.getElementsByName('items-expire')[index];
-      // itemsExpireObject.value = items[key].expire;
+      const itemsNameObject = document.getElementsByName('items-name')[index];
+      itemsNameObject.innerHTML = items[key].name;
+      const itemsEnterObject = document.getElementsByName('items-enter')[index];
+      itemsEnterObject.innerHTML = items[key].enter;
+      const itemsExpireObject = document.getElementsByName('items-expire')[index];
+      itemsExpireObject.innerHTML = items[key].expire;
       // itemsExpireObject.key = key;
       // itemsExpireObject.index = index;
-      // const itemsDeleteObject = document.getElementsByName('items-delete')[index];
-      // itemsDeleteObject.key = key;
+      const itemsDeleteObject = document.getElementsByName('items-delete')[index];
+      itemsDeleteObject.key = key;
       // const itemsCheckboxObject = document.getElementsByName('items-checkbox')[index];
       // itemsCheckboxObject.key = key;
       index++;
