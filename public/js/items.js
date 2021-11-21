@@ -67,24 +67,28 @@ const itemsUpdate = function(index, key) {
 };
 
 const itemsUpdateModal = function(key) {
-  // TODO: 눌러진 버튼을 바탕으로 해당 중의 데이터를 모달창에 적용
   const itemNameObject = document.getElementsByName('item-name')[0];
   itemNameObject.value = items[key].name;
   const itemEnterObject = document.getElementsByName('item-enter')[0];
   itemEnterObject.value = items[key].enter;
   const itemExpireObject = document.getElementsByName('item-expire')[0];
   itemExpireObject.value = items[key].expire;
+  const itemUpdateObject = document.getElementsByName('item-update')[0];
+  itemUpdateObject.key = key
+
+  // // TODO: 데이터를 수정 후 DB에 저장
+  // const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/items/' + key + '.json';
+  // // const expire = document.getElementsByName('items-expire')[index].value;
+  // const item = {
+  //   name: name
+  // };
+  // debugger
+  // axios.patch(url, item).then(itemsRead);
 };
 
 const itemsChange = function(event) {
   const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/items/' + event.target.key + '.json';
   if (event.target.checked) {
-    console.log('TODO: item 생성')
-    console.log(event.target.key)
-    console.log(items)
-    console.log(items[event.target.key])
-    console.log(event)
-    console.log(url);
     axios.patch(url, items[event.target.key]);
   } else {
     console.log('TODO: item 삭제')
