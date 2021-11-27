@@ -57,13 +57,18 @@ const itemsDelete = function(key) {
   axios.delete(url).then(itemsRead);
 };
 
-const itemsUpdate = function(index, key) {
+const itemUpdate = function(key) {
   const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/items/' + key + '.json';
-  const expire = document.getElementsByName('items-expire')[index].value;
+  const name = document.getElementsByName('item-name')[0].value;
+  const enter = document.getElementsByName('item-enter')[0].value;
+  const expire = document.getElementsByName('item-expire')[0].value;
   const item = {
+    name: name,
+    enter: enter,
     expire: expire
   };
   axios.patch(url, item).then(itemsRead);
+  modalToggle();
 };
 
 const itemsUpdateModal = function(key) {
