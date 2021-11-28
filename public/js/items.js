@@ -1,13 +1,10 @@
 let items;
 
-// const queryString = new URLSearchParams(window.location.search);
-// const nameText = queryString.get('input-text');
-// // const inputTextObjects = document.getElementsByName('input-text');
-// // const inputTextObject = inputTextObjects[0];
-// const inputTextObject = document.getElementsByName('input-text')[0]; 
-// inputTextObject.value = nameText;
-// inputTextObject.focus();
-// inputTextObject.blur();
+const queryString = new URLSearchParams(window.location.search);
+const q = queryString.get('q') || '';
+const name = document.getElementsByName('q')[0];
+name.value = q;
+name.focus();
 
 const itemsCreate = function(form) {
   const itemNameObject = form['item-name'];
@@ -30,6 +27,7 @@ const itemsRead = function() {
     const tagTrChild = document.getElementById('tag-tr-child');
     let index = 0;
     for (let key in items) {
+      if (items[key].name.indexOf(q) < 0) continue;
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
       const itemsNameObject = document.getElementsByName('items-name')[index];
