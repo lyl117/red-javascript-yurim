@@ -1,5 +1,27 @@
 let carts;
 
+const queryString = new URLSearchParams(window.location.search);
+const orderByName = queryString.get('orderByName') || '';
+const orderByType = queryString.get('orderByType') || '';
+
+// if (orderByName === 'name' && orderByType === 'asc') {
+//   document.getElementsByClassName('orderBy')[0].classList.add('active');
+// } else if (orderByName === 'name' && orderByType === 'desc') {
+//   document.getElementsByClassName('orderBy')[1].classList.add('active');
+// }
+// if (orderByName === 'enter' && orderByType === 'asc') {
+//   document.getElementsByClassName('orderBy')[2].classList.add('active');
+// } else if (orderByName === 'enter' && orderByType === 'desc') {
+//   document.getElementsByClassName('orderBy')[3].classList.add('active');
+// }
+// if (orderByName === 'expire' && orderByType === 'asc') {
+//   document.getElementsByClassName('orderBy')[4].classList.add('active');
+// } else if (orderByName === 'expire' && orderByType === 'desc') {
+//   document.getElementsByClassName('orderBy')[5].classList.add('active');
+// }
+
+document.getElementById(orderByName + '-' + orderByType).classList.add('active');
+
 // const queryString = new URLSearchParams(window.location.search);
 // const nameText = queryString.get('input-text');
 // // const inputTextObjects = document.getElementsByName('input-text');
