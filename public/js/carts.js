@@ -23,8 +23,21 @@ const cartsCreate = function(form) {
 };
 
 const cartsRead = function() {
-  axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
-    carts = response.data;
+  const promises = [];
+  promises[0] = new Promise(function(resolve, reject) {
+    axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
+      resolve(response.data);
+    })
+  });
+  promises[1] = new Promise(function(resolve, reject) {
+    axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
+      resolve(response.data);
+    })
+  });
+  Promise.all(promises).then(function(result) {
+    console.log(result);
+    carts = result[0];
+    const items = result[1];
     const tagTbodyParent = document.getElementById('tag-tbody-parent');
     tagTbodyParent.innerHTML = '';
     const tagTrChild = document.getElementById('tag-tr-child');
@@ -44,24 +57,10 @@ const cartsRead = function() {
       cartsDeleteObject.key = key;
       const cartsCheckboxObject = document.getElementsByName('carts-checkbox')[index];
       cartsCheckboxObject.key = key;
+      cartsCheckboxObject.checked = items[key] ? true : false;
       index++;
     }
     console.log('Readed', carts);
-  });
-
-  const promises = [];
-  promises[0] = new Promise(function(resolve, reject) {
-    axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
-      resolve(response.data);
-    })
-  });
-  promises[1] = new Promise(function(resolve, reject) {
-    axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
-      resolve(response.data);
-    })
-  });
-  Promise.all(promises).then(function(result) {
-    console.log(result);
   }).catch(function(error) {
     console.error(error);
   });
