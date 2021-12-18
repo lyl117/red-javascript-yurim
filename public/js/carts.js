@@ -1,8 +1,8 @@
 let carts;
 
 const queryString = new URLSearchParams(window.location.search);
-const orderByName = queryString.get('orderByName') || '';
-const orderByType = queryString.get('orderByType') || '';
+const orderByName = queryString.get('orderByName') || 'name';
+const orderByType = queryString.get('orderByType') || 'desc';
 
 // if (orderByName === 'name' && orderByType === 'asc') {
 //   document.getElementsByClassName('orderBy')[0].classList.add('active');
