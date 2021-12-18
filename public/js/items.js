@@ -1,10 +1,14 @@
 let items;
 
 const queryString = new URLSearchParams(window.location.search);
+const orderByName = queryString.get('orderByName')||'name';
+const orderByType = queryString.get('orderByType')||'desc';
 const q = queryString.get('q') || '';
 const name = document.getElementsByName('q')[0];
 name.value = q;
 name.focus();
+document.getElementById(orderByName + '-' + orderByType).classList.add('active');
+
 
 const itemsCreate = function(form) {
   const itemNameObject = form['item-name'];
@@ -25,28 +29,32 @@ const itemsRead = function() {
     const tagTbodyParent = document.getElementById('tag-tbody-parent');
     tagTbodyParent.innerHTML = '';
     const tagTrChild = document.getElementById('tag-tr-child');
-    let index = 0;
     for (let key in items) {
-      if (items[key].name.indexOf(q) < 0) continue;
+      items[key].k = key
+    }
+    let _items = _.orderBy(items, orderByName, orderByType)
+    let index = 0;
+    for (let i in _items) {
+      if (_items[i].name.indexOf(q) < 0) continue;
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
       const itemsNameObject = document.getElementsByName('items-name')[index];
-      itemsNameObject.innerHTML = items[key].name;
+      itemsNameObject.innerHTML = _items[i].name;
       const itemsEnterObject = document.getElementsByName('items-enter')[index];
-      itemsEnterObject.innerHTML = items[key].enter;
+      itemsEnterObject.innerHTML = _items[i].enter;
       const itemsExpireObject = document.getElementsByName('items-expire')[index];
-      itemsExpireObject.innerHTML = items[key].expire;
+      itemsExpireObject.innerHTML = _items[i].expire;
       // itemsExpireObject.key = key;
       // itemsExpireObject.index = index;
       const itemsUpdateObject = document.getElementsByName('items-update')[index];
-      itemsUpdateObject.key = key;
+      itemsUpdateObject.key = _items[i].k;
       const itemsDeleteObject = document.getElementsByName('items-delete')[index];
-      itemsDeleteObject.key = key;
+      itemsDeleteObject.key = _items[i].k;
       // const itemsCheckboxObject = document.getElementsByName('items-checkbox')[index];
       // itemsCheckboxObject.key = key;
       index++;
     }
-    console.log('Readed', items);
+    console.log('Readed', _items);
   });
 };
 
@@ -55,7 +63,7 @@ const itemsDelete = function(key) {
   axios.delete(url).then(itemsRead);
 };
 
-const itemUpdate = function(key) {
+const itemsUpdate = function(key) {
   const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/items/' + key + '.json';
   const name = document.getElementsByName('item-name')[0].value;
   const enter = document.getElementsByName('item-enter')[0].value;
