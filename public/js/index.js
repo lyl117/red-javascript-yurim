@@ -37,3 +37,12 @@ const googleLogin = function() {
 const googleLogout = function() {
   firebase.auth().signOut();
 }
+
+const emailSignup = function(form) {
+  const email = 'geust@red-javascript-yurim.web.app'
+  const password = 'geustgeust'
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    console.error(error);
+    alert(error.message);
+  });
+};
