@@ -1,5 +1,6 @@
 firebase.auth().onAuthStateChanged(function(firebaseUser) {
   console.log(firebaseUser);
+  // console.log(firebaseUser.toString());
   if (firebaseUser) {
     console.log('로그인');
     // TODO: 로그인 li태그 찾기
@@ -13,6 +14,13 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     loginName.style.display = 'block';
     const loginLogout = document.getElementsByName('login-logout')[0];
     loginLogout.style.display = 'block';
+    const loginDisplayName = document.getElementsByName('login-display-name')[0];
+    if (firebaseUser.displayName) {
+      loginDisplayName.innerHTML = firebaseUser.displayName;
+    } else {
+      loginDisplayName.innerHTML = '게스트';
+    }
+    // loginDisplayName.innerHTML = firebaseUser.displayName ? firebaseUser.displayName : '게스트';
   } else {
     console.log('로그아웃')
     // TODO:
@@ -42,6 +50,15 @@ const emailSignup = function(form) {
   const email = 'geust@red-javascript-yurim.web.app'
   const password = 'geustgeust'
   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    console.error(error);
+    alert(error.message);
+  });
+};
+
+const emailSignin = function(form) {
+  const email = 'geust@red-javascript-yurim.web.app'
+  const password = 'geustgeust'
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     console.error(error);
     alert(error.message);
   });
