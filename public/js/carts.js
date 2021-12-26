@@ -120,4 +120,4 @@ const itemsChange = function(event) {
   }
 }
 
-cartsRead();
+// cartsRead();

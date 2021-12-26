@@ -107,4 +107,4 @@ const itemsChange = function(event) {
   }
 }
 
-itemsRead();
+// itemsRead();
