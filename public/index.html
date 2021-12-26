@@ -7,6 +7,10 @@
   <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+  <script defer src="/__/firebase/9.6.1/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/9.6.1/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script defer src="./js/index.js"></script>
   <link href="./index.css" rel="stylesheet">
 </head>
 <body>
@@ -30,10 +34,10 @@
         <a href="#!" id="menu-a-account" onclick="accountToggle(); return false;">
           <span class="material-icons-outlined">account_circle</span>
           <ul class="account-menu">
-            <li>Guest</li>
-            <li>Login</li>
-            <li>Hello 홍길동!</li>
-            <li>Logout</li>
+            <li name="login-guest">Guest</li>
+            <li name="login-login" onclick="googleLogin();">Login</li>
+            <li name="login-name">Hello 홍길동!</li>
+            <li name="login-logout" onclick="googleLogout();">Logout</li>
           </ul>
         </a>
       </div>
