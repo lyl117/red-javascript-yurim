@@ -21,6 +21,10 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
       loginDisplayName.innerHTML = '게스트';
     }
     // loginDisplayName.innerHTML = firebaseUser.displayName ? firebaseUser.displayName : '게스트';
+    const menuCarts = document.getElementsByName('menu-carts')[0];
+    menuCarts.style.display='block';
+    const menuItems = document.getElementsByName('menu-items')[0];
+    menuItems.style.display='block';
   } else {
     console.log('로그아웃')
     // TODO:
@@ -33,7 +37,10 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     loginName.style.display = 'none';
     const loginLogout = document.getElementsByName('login-logout')[0];
     loginLogout.style.display = 'none';
-    
+    const menuCarts = document.getElementsByName('menu-carts')[0];
+    menuCarts.style.display='none';
+    const menuItems = document.getElementsByName('menu-items')[0];
+    menuItems.style.display='none';
   }
 });
 
