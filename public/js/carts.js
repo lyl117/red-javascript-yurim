@@ -54,6 +54,14 @@ const cartsRead = function() {
   promises[1] = new Promise(function(resolve, reject) {
     axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
       resolve(response.data);
+      let count = 0;
+      for (let i in response.data) {
+        if (moment().format('YYYY-MM-DD') > response.data[i].expire) {
+          count++;
+        }
+      }
+      const menuItemsCounter = document.getElementById('menu-items-counter');
+      menuItemsCounter.innerHTML = count;
     })
   });
   Promise.all(promises).then(function(result) {
