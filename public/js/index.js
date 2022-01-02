@@ -30,6 +30,17 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
       cartsRead();
     } else if (window.location.pathname === '/items.html') {
       itemsRead();
+    } else {
+      axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
+        let count = 0;
+        for (let i in response.data) {
+          if (moment().format('YYYY-MM-DD') > response.data[i].expire) {
+            count++;
+          }
+        }
+        const menuItemsCounter = document.getElementById('menu-items-counter');
+        menuItemsCounter.innerHTML = count;
+      })
     }
   } else {
     console.log('로그아웃')
