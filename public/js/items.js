@@ -42,6 +42,8 @@ const itemsRead = function() {
       if (_items[i].name.indexOf(q) < 0) continue;
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
+      const itemsIndexObject = document.getElementsByName('items-index')[index];
+      itemsIndexObject.innerHTML = index + 1;
       const itemsNameObject = document.getElementsByName('items-name')[index];
       itemsNameObject.innerHTML = _items[i].name;
       const itemsEnterObject = document.getElementsByName('items-enter')[index];
