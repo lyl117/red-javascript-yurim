@@ -34,7 +34,11 @@ const itemsRead = function() {
     }
     let _items = _.orderBy(items, orderByName, orderByType)
     let index = 0;
+    let count = 0;
     for (let i in _items) {
+      if (moment().format('YYYY-MM-DD') > _items[i].expire) {
+        count++;
+      }
       if (_items[i].name.indexOf(q) < 0) continue;
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
@@ -54,6 +58,9 @@ const itemsRead = function() {
       // itemsCheckboxObject.key = key;
       index++;
     }
+    // menu-items-counter
+    const menuItemsCounter = document.getElementById('menu-items-counter');
+    menuItemsCounter.innerHTML = count;
     console.log('Readed', _items);
   });
 };
