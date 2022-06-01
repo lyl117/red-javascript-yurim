@@ -1,10 +1,10 @@
-## ✋ 기본정보
+## ✋기본정보
 
 - 2021.10 - 2021.12(수정 중)
 - Tool : html, css, javascript, firebase
 - Link: [https://red-javascript-yurim.web.app/](https://red-javascript-yurim.web.app/)
 
-##✋ 설명
+## ✋설명
 
 자바스크립트를 익히기 위해 만든 프로젝트로서, 냉장고 안에 있는 재료들을 기록하고, 정리할 수 있도록 개발했습니다. 제일 필요한 주요 기능(이름, 구매 날짜, 유통기한)들을 저장하고, 수정하고, 삭제할 수 있는 기능들을 구현했습니다.
 
