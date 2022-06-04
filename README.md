@@ -3,6 +3,7 @@
 - 2021.10 - 2021.12(수정 중)
 - Tool : html, css, javascript, firebase
 - Link: [https://red-javascript-yurim.web.app/](https://red-javascript-yurim.web.app/)
+- email : ylee981352@gmail.com
 
 ## ✋설명
 
